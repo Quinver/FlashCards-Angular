@@ -1,0 +1,59 @@
+/* Container styling */
+.deck-container {
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+}
+
+/* Input and textarea styling */
+.input-text,
+.textarea {
+  width: 100%;
+  max-width: 100%; /* Ensure it doesn't exceed the container width */
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box; /* Include padding and border in the element's total width */
+}
+
+.textarea {
+  resize: vertical;
+}
+
+.readonly {
+    background-color: #f8f9fa;
+    color: #495057;
+    cursor: not-allowed;
+}
+
+/* Card styling */
+.card {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1.5px solid black;
+  border-radius: 4px;
+  background-color: #424769;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+}
+
+.add-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.save-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.remove-btn {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}

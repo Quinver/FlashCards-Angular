@@ -1,13 +1,8 @@
-import { Component } from '@angular/core';
-import { CardService } from '../card.service';
+import { Component, OnInit } from '@angular/core';
+import { CardService } from './card.service';
 import { CommonModule } from '@angular/common';
-
-interface Card {
-  id: number;
-  flipped: boolean;
-  frontText: string;
-  backText: string;
-}
+import { ActivatedRoute } from '@angular/router';
+import { Card } from '../models/card.model';
 
 @Component({
   selector: 'app-cards',
@@ -15,16 +10,23 @@ interface Card {
   templateUrl: './cards.component.html',
   styleUrls: ['./cards.component.css'],
 })
-export class CardsComponent {
+export class CardsComponent implements OnInit {
   cards: Card[] = [];
+  deckId: number = 0;
 
   currentCardIndex = 0;
 
-  constructor(private cardService: CardService) {}
+  constructor(
+    private cardService: CardService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    // Fetch cards from the API when the component is initialized
-    this.cardService.getCards().subscribe((data: Card[]) => {
+    // Fetch the deckId from the route parameters
+    this.deckId = Number(this.route.snapshot.paramMap.get('deckId'));
+    
+    // Fetch cards for the current deckId
+    this.cardService.getCards(this.deckId).subscribe((data: Card[]) => {
       this.cards = data;
     });
   }
@@ -36,27 +38,14 @@ export class CardsComponent {
 
   nextCard() {
     // Increment the current card index and wrap around using modulo and reset to front
-    this.cards.forEach(card => card.flipped = false);
+    this.cards.forEach((card) => (card.flipped = false));
     this.currentCardIndex = (this.currentCardIndex + 1) % this.cards.length;
   }
 
   previousCard() {
     // Decrement the current card index and wrap around using modulo
-    this.cards.forEach(card => card.flipped = false);
-    this.currentCardIndex = (this.currentCardIndex - 1 + this.cards.length) % this.cards.length;
-  }
-  
-  addCard() {
-    const newCard: Card = { id: 0, frontText: 'New Front', backText: 'New Back', flipped: false };
-    this.cardService.createCard(newCard).subscribe((card: Card) => {
-      this.cards.push(card); // Add the new card to the list
-    });
-  }
-
-  // Delete a card
-  deleteCard(id: number) {
-    this.cardService.deleteCard(id).subscribe(() => {
-      this.cards = this.cards.filter(card => card.id !== id); // Remove the deleted card from the list
-    });
+    this.cards.forEach((card) => (card.flipped = false));
+    this.currentCardIndex =
+      (this.currentCardIndex - 1 + this.cards.length) % this.cards.length;
   }
 }

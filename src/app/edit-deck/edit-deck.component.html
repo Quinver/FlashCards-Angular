@@ -1,0 +1,19 @@
+<div class="deck-container">
+    <h2>Name: <input [(ngModel)]="deck.name" class="input-text" /></h2>
+    <p>Id: <input [(ngModel)]="deck.id" readonly class="input-text readonly" /></p>
+    <p>Description: <textarea [(ngModel)]="deck.description" class="textarea"></textarea></p>
+  
+    <hr />
+  
+    <h3>Cards</h3>
+    <div *ngFor="let card of deck.cards; let i = index" class="card">
+      <h4>Card {{ i + 1 }}</h4>
+      <p>Front: <input [(ngModel)]="deck.cards[i].frontText" class="input-text" /></p>
+      <p>Back: <input [(ngModel)]="deck.cards[i].backText" class="input-text" /></p>
+      <button (click)="removeCard(i)" class="btn remove-btn">Remove</button>
+    </div>
+  
+    <button (click)="addCard()" class="btn add-btn">Add Card</button>
+    <button (click)="saveDeck()" class="btn save-btn">Save</button>
+  </div>
+  

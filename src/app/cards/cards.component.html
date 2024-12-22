@@ -21,8 +21,3 @@
     <button class="btn-primary" (click)="nextCard()">Next</button>
   </div>
 </div>
-
-<div class="card-actions">
-  <button class="btn-primary" (click)="addCard()">Add Card</button>
-  <button *ngFor="let card of cards" (click)="deleteCard(card.id)">Delete {{ card.id }}</button>
-</div>

@@ -1,23 +1,57 @@
 <table>
-    <tr>
-        <th>Deck Name</th>
-        <th>Deck Description</th>
-        <th>Deck Actions</th>
-    </tr>
-    <tr>
-        <td>Deck 1</td>
-        <td>Deck 1 Description</td>
-        <td>
-            <button class="button-primary">Edit</button>
-            <button class="button-primary">Delete</button>
-        </td>
-    </tr>
-    <tr>
-        <td>Deck 2</td>
-        <td>Deck 2 Description</td>
-        <td>
-            <button class="button-primary">Edit</button>
-            <button class="button-primary">Delete</button>
-        </td>
-    </tr>
+  <tr>
+    <th>Deck Name</th>
+    <th>Deck Description</th>
+    <th>Deck Actions</th>
+  </tr>
+  <tr *ngFor="let deck of decks" (click)="onSelect(deck.id)" class="hover-row">
+    <td>{{ deck.name }}</td>
+    <td>{{ deck.description }}</td>
+    <td>
+      <button class="btn btn-primary" (click)="onEdit(deck.id, $event)">
+        Edit
+      </button>
+      <button class="btn cancel-btn" (click)="onDelete(deck.id, $event)">
+        Delete
+      </button>
+    </td>
+  </tr>
 </table>
+
+<button class="btn add-btn" (click)="openForm()">Add Deck</button>
+
+<!-- Form popup to add a deck -->
+<div class="form-popup" id="myForm" [class.show]="isFormVisible">
+  <form class="form-container" (submit)="createDeck()">
+    <h1>Create Deck</h1>
+
+    <label for="deckName">Deck Name</label>
+    <input
+      type="text"
+      id="deckName"
+      placeholder="Enter Deck Name"
+      name="name"
+      [(ngModel)]="newDeck.name"
+      required
+      class="input-text"
+      required
+    />
+
+    <label for="deckDescription">Deck Description</label>
+    <textarea
+      id="deckDescription"
+      placeholder="Enter Deck Description"
+      name="description"
+      [(ngModel)]="newDeck.description"
+      required
+      class="textarea"
+    ></textarea>
+
+    <div class="form-actions">
+      <button type="submit" class="btn submit-btn">Create</button>
+      <button type="button" class="btn cancel-btn" (click)="closeForm()">
+        Close
+      </button>
+    </div>
+  </form>
+</div>
