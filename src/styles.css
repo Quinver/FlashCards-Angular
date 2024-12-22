@@ -1,7 +1,53 @@
 /* You can add global styles to this file, and also import other style files */
-body {
-    margin: 0;
-    padding: 0;
+:root {
+  --main-bg-color: #2D3250;
+  --main-light-color: #E2E2B6;
+}
 
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+
+  background-color: var(--main-bg-color);
+
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: white;
+}
+
+table,
+th,
+td {
+  border: 1.5px solid rgb(104, 104, 104);
+  padding: 8px;
+}
+
+table th {
+  background-color: #424769;
+  color: white;
+}
+
+table tr:nth-child(even) {
+  background-color: #7077A1;
+}
+
+table tr:hover td {
+  opacity: 0.8;
+}
+
+table {
+  margin-top: 10px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.btn-primary {
+  background-color: #F6B17A;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
 }

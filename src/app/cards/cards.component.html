@@ -1,0 +1,23 @@
+<div class="container">
+  <div
+    *ngFor="let card of cards; let i = index"
+    class="flip-card"
+    [ngClass]="{ flipped: card.flipped, hidden: i !== currentCardIndex }"
+    (click)="flipCard(i)"
+  >
+    <div class="card-inner">
+      <div class="card-front">
+        <p>{{ card.frontText }}</p>
+      </div>
+      <div class="card-back">
+        <p>{{ card.backText }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation controls -->
+  <div class="navigation">
+    <button class="btn-primary" (click)="previousCard()">Previous</button>
+    <button class="btn-primary" (click)="nextCard()">Next</button>
+  </div>
+</div>
