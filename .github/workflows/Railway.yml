@@ -14,10 +14,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        
-      - name: Install bash
-        run: apt-get update && apt-get install -y bash
-        
+
       - name: Set up .NET SDK
         uses: actions/setup-dotnet@v3
         with:
