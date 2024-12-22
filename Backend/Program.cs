@@ -14,6 +14,10 @@ builder.Services.AddCors(options =>
                           policy.WithOrigins("http://localhost:4200")  // Allow your Angular frontend
                                 .AllowAnyMethod()                      // Allow any HTTP methods (GET, POST, etc.)
                                 .AllowAnyHeader();                     // Allow any headers
+
+                          policy.WithOrigins("https://quinver.github.io/")
+                                  .AllowAnyMethod()
+                                  .AllowAnyHeader();
                       });
 });
 
