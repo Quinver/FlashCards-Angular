@@ -2,32 +2,18 @@ name: Deploy to Railway
 
 on:
   push:
-    branches: [master]  # Trigger on push to the master branch
+    branches: [master]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    container: ghcr.io/railwayapp/cli:latest  # Using Railway CLI container
+    container: ghcr.io/railwayapp/cli:latest
     env:
-      SVC_ID: 1571494a-68d4-4c36-9e37-d1fd32c4b50a  # Set your service ID (replace with your actual service ID)
-      RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}  # Set your Railway token securely using GitHub Secrets
+      SVC_ID: 1571494a-68d4-4c36-9e37-d1fd32c4b50a
+      RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up .NET SDK
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '9.0'  # Or another version of .NET that your project uses
-
-      - name: Restore .NET dependencies
-        run: dotnet restore ./Backend/FlashcardBackend.csproj
-
-      - name: Build .NET project
-        run: dotnet build ./Backend/FlashcardBackend.csproj --configuration Release
-
-      - name: Publish .NET project
-        run: dotnet publish ./Backend/FlashcardBackend.csproj --configuration Release --output ./publish
-
       - name: Deploy to Railway using CLI
-        run: railway up --service=${{ env.SVC_ID }}  # Deploys the app to Railway
+        run: railway up --service=${{ env.SVC_ID }}
