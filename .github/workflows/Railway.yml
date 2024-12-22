@@ -29,7 +29,7 @@ jobs:
 
       # Build the app
       - name: Build
-        run: dotnet build ./YourApi/YourApi.csproj --configuration Release
+        run: dotnet build ./Backend/FlashcardBackend.csproj --configuration Release
 
       # Publish the app
       - name: Publish
