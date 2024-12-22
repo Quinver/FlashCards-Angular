@@ -1,0 +1,63 @@
+@FlashcardBackend_HostAddress = http://localhost:5041
+
+GET {{FlashcardBackend_HostAddress}}/api/cards
+Accept: application/json
+
+###
+
+put http://localhost:5041/api/cards/
+Content-Type: application/json
+
+  [
+  {
+      "frontText": "Card Front2",
+      "backText": "Card Back2",
+      "flipped": false,
+      "deckId": 1,
+      "cards": []
+  },
+  {
+      "frontText": "Card Front3",
+      "backText": "Card Back3",
+      "flipped": false,
+      "deckId": 1,
+      "cards": []
+  }
+]
+
+###
+
+GET http://localhost:5041/api/decks
+
+###
+
+GET http://localhost:5041/api/decks/6
+
+###
+
+PUT http://localhost:5041/api/decks/6
+Content-Type: application/json
+
+{
+  "id": 6,
+  "name": "Deck 3",
+  "description": "Deck 3 description",
+  "cards": [
+    {
+      "frontText": "Card Front2",
+      "backText": "Card Back2",
+      "flipped": false,
+      "deckId": 6
+    },
+    {
+      "frontText": "Card Front3",
+      "backText": "Card Back3",
+      "flipped": false,
+      "deckId": 6
+    }
+  ]
+}
+
+###
+
+DELETE http://localhost:5041/api/cards/50

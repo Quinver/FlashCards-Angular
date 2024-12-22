@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { DecksService } from '../deck-list/decks.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Deck } from '../models/deck.model';
-
 
 @Component({
   selector: 'app-edit-deck',
@@ -14,9 +13,12 @@ import { Deck } from '../models/deck.model';
 })
 export class EditDeckComponent {
   deck: Deck = { id: 0, name: '', description: '', cards: [] };
-  
 
-  constructor(private route: ActivatedRoute, private deckService: DecksService, private router: Router) {}
+  constructor(
+    private location: Location,
+    private route: ActivatedRoute,
+    private deckService: DecksService
+  ) {}
 
   ngOnInit() {
     // Fetch the deckId from the route parameters
@@ -37,14 +39,23 @@ export class EditDeckComponent {
 
   addCard() {
     // Add a new card to the deck
-    this.deck.cards.push({ id: 0, frontText: 'Front Placeholder', backText: 'Back Placeholder', deckId: this.deck.id, flipped: false });
+    this.deck.cards.push({
+      id: 0,
+      frontText: 'Front Placeholder',
+      backText: 'Back Placeholder',
+      deckId: this.deck.id,
+      flipped: false,
+    });
   }
 
   saveDeck() {
     // Update the deck details
     this.deckService.updateDeck(this.deck.id, this.deck).subscribe(() => {
-      // Navigate back to the deck list after updating the deck
-      this.router.navigate(['/']);
+      // After saving, fetch the updated deck to keep data in sync
+      this.deckService.getDeck(this.deck.id).subscribe((updatedDeck) => {
+        this.deck = updatedDeck;
+        this.location.back(); // Navigate back to the previous page
+      });
     });
   }
 }

@@ -1,0 +1,31 @@
+<div class="container">
+  <div
+    *ngFor="let card of cards; let i = index"
+    class="flip-card"
+    [ngClass]="{ flipped: card.flipped, hidden: i !== currentCardIndex }"
+    (click)="flipCard(i)"
+  >
+    <div class="card-inner">
+      <div class="card-front">
+        <p>{{ card.frontText }}</p>
+      </div>
+      <div class="card-back">
+        <p>{{ card.backText }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation controls when there are cards-->
+  <div class="card-nav" *ngIf="cards.length > 0">
+    <div class="navigation">
+      <button class="btn-primary" (click)="previousCard()">Previous</button>
+      <button class="btn-primary" (click)="nextCard()">Next</button>
+    </div>
+  </div>
+
+  <!-- Message when there are no cards -->
+  <div class="no-cards" *ngIf="cards.length === 0">
+    <p>No cards to display. Add a card to get started!</p>
+    <button class="btn btn-primary" routerLink="/edit-deck/{{ deckId }}">Edit</button>
+  </div>
+</div>

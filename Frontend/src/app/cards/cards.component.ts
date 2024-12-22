@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CardService } from './card.service';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink} from '@angular/router';
 import { Card } from '../models/card.model';
 
 @Component({
   selector: 'app-cards',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './cards.component.html',
   styleUrls: ['./cards.component.css'],
 })

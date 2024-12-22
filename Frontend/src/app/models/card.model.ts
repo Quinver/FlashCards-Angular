@@ -1,5 +1,5 @@
 export interface Card {
-  id: number;
+  id?: number;
   frontText: string;
   backText: string;
   flipped: boolean;

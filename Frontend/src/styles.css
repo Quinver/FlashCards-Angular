@@ -80,11 +80,6 @@ table {
   color: black;
 }
 
-.btn-primary:hover {
-  background-color: #f6b17a;
-  color: white;
-}
-
 /* Shoutout to Bootstrap for the button styles */
 .btn {
   margin-right: 0.07rem;
