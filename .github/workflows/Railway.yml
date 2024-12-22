@@ -1,48 +1,33 @@
-name: Deploy .NET Core API to Railway
+name: Deploy to Railway
 
 on:
   push:
-    branches:
-      - master  # Trigger deployment on push to main branch
-  pull_request:
-    branches:
-      - master  # Optionally trigger for PRs to main
+    branches: [master]  # Trigger on push to the master branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
+    container: ghcr.io/railwayapp/cli:latest  # Using Railway CLI container
+    env:
+      SVC_ID: 1571494a-68d4-4c36-9e37-d1fd32c4b50a  # Set your service ID (replace with your actual service ID)
+      RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}  # Set your Railway token securely using GitHub Secrets
     steps:
-      # Checkout code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Set up .NET Core SDK
-      - name: Set up .NET Core SDK
+      - name: Set up .NET SDK
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '9.0'
+          dotnet-version: '9.0'  # Or another version of .NET that your project uses
 
-      # Restore dependencies
-      - name: Restore dependencies
+      - name: Restore .NET dependencies
         run: dotnet restore ./Backend/FlashcardBackend.csproj
 
-      # Build the app
-      - name: Build
+      - name: Build .NET project
         run: dotnet build ./Backend/FlashcardBackend.csproj --configuration Release
 
-      # Publish the app
-      - name: Publish
+      - name: Publish .NET project
         run: dotnet publish ./Backend/FlashcardBackend.csproj --configuration Release --output ./publish
 
-      # Deploy to Railway
-      - name: Deploy to Railway
-        env:
-          RAILWAY_API_KEY: ${{ secrets.RAILWAY_API_KEY }}  # Your Railway API key from GitHub Secrets
-        run: |
-          curl -sSL https://railway.app/api/v1/projects/${{ secrets.RAILWAY_PROJECT_ID }}/deployments \
-          -X POST \
-          -H "Authorization: Bearer $RAILWAY_API_KEY" \
-          -H "Content-Type: application/json" \
-          -d '{"ref": "main"}'
-
+      - name: Deploy to Railway using CLI
+        run: railway up --service=${{ env.SVC_ID }}  # Deploys the app to Railway
