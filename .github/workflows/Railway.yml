@@ -15,13 +15,5 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up .NET SDK
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '8.0.x'
-
-      - name: Install dependencies
-        run: dotnet restore
-
       - name: Deploy to Railway using CLI
         run: railway up --service=${{ env.SVC_ID }}
