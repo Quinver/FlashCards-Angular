@@ -4,5 +4,5 @@ import { CardsComponent } from './cards/cards.component';
 
 export const routes: Routes = [
     { path: '', component: DeckListComponent },
-    { path: 'cards ', component: CardsComponent },
+    { path: 'cards', component: CardsComponent },
 ];
