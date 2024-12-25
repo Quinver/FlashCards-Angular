@@ -1,7 +1,7 @@
 # Flashcards
 I'm trying out diffrent frameworks to get the feel of them. And this is my attempt to work with Angular with Asp.net core as backend.
 
-The app itself is just the thousands flashcard app. You can add/remove/edit decks, and in the decks you can do the same for the cards. I have not used any css frameworks because my skills were getting a bit rusty in that area.
+The app itself is just the thousands flashcard app. You can add/remove/edit decks, and in the decks you can do the same for the cards. I have not used any css framework because my skills were getting a bit rusty in that area.
 
 ## Local Install
 To run it I've decided on docker.
