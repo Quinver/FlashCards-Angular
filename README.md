@@ -25,7 +25,7 @@ git clone https://github.com/Quinver/FlashCards-Angular.git
 ```bash
 cd FlashCards-Angular
 ```
-5. Finally, run the Docker containers defined in the docker-compose.yml file:
+5. Finally, run the Docker containers defined in the docker-compose.yml file(This will take a while):
 ```bash
 sudo docker-compose up
 ```
@@ -42,9 +42,15 @@ git clone https://github.com/Quinver/FlashCards-Angular.git
 ```bash
 cd FlashCards-Angular
 ```
-6. Finally, run the Docker containers defined in the docker-compose.yml file:
+6. Finally, run the Docker containers defined in the docker-compose.yml file(This will take a while):
 ```bash
 docker-compose up
 ```
+## Running: how to basic!
+The site is running on http://localhost:4200.
+If you want to access the api go to http://localhost:5041.
+
+That's it, now you can manoeuvre throught the beautiful ui and make your flashcards a reality.
+
 ## Closure
 This was the easiest way I could think of to let you run this project locally, if you have any tips/improvements for the installation, feel free to contact me.
