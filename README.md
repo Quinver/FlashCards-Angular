@@ -30,7 +30,7 @@ cd FlashCards-Angular
 sudo docker-compose up
 ```
 ### Windows:
-This is out of my head so take with a grain of salt.
+This is out of my head so take it with a grain of salt.
 1. Install docker from the [download](https://docs.docker.com/desktop/setup/install/windows-install/) page.
 2. Restart system if needed.
 3. Run docker-desktop.
