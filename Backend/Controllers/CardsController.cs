@@ -104,9 +104,10 @@ namespace FlashcardBackend.Controllers
             {
                 return BadRequest();
             }
-
+            
+            // Get the existing deck from the database
             var existingDeck = await _context.Decks
-                .Include(d => d.Cards)  // Include related cards
+                .Include(d => d.Cards)
                 .FirstOrDefaultAsync(d => d.Id == id);
 
             if (existingDeck == null)
@@ -138,7 +139,7 @@ namespace FlashcardBackend.Controllers
                         existingCard.FrontText = updatedCard.FrontText;
                         existingCard.BackText = updatedCard.BackText;
                         existingCard.Flipped = updatedCard.Flipped;
-                        existingCard.DeckId = updatedCard.DeckId;  // Ensure DeckId is set correctly
+                        existingCard.DeckId = updatedCard.DeckId;  
                     }
                     else
                     {
@@ -148,7 +149,7 @@ namespace FlashcardBackend.Controllers
                             FrontText = updatedCard.FrontText,
                             BackText = updatedCard.BackText,
                             Flipped = updatedCard.Flipped,
-                            DeckId = updatedCard.DeckId  // Set the DeckId for the new card
+                            DeckId = updatedCard.DeckId 
                         });
                     }
                 }

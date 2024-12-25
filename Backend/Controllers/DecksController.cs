@@ -122,7 +122,7 @@ namespace FlashcardBackend.Controllers
                 return NotFound($"Deck with ID {id} not found.");
             }
 
-            // Update deck properties (name, description)
+            // Update deck properties 
             existingDeck.Name = deck.Name;
             existingDeck.Description = deck.Description;
 
@@ -138,7 +138,7 @@ namespace FlashcardBackend.Controllers
                 }
             }
             
-            // Now, let's update or add new cards
+            // Update or add new cards
             if (deck.Cards != null)
             {
                 // Attach or add new cards
@@ -146,7 +146,7 @@ namespace FlashcardBackend.Controllers
                 {
                     if (card.Id == 0)  // New card, add it
                     {
-                        card.DeckId = id;  // Ensure DeckId is set
+                        card.DeckId = id;
                         _context.Cards.Add(card);
                     }
                     else  // Existing card, update it
@@ -162,7 +162,7 @@ namespace FlashcardBackend.Controllers
                         else
                         {
                             // If the card doesn't exist, we can choose to add it as a new card
-                            card.DeckId = id;  // Ensure DeckId is set
+                            card.DeckId = id;
                             _context.Cards.Add(card);
                         }
                     }
