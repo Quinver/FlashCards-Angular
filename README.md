@@ -5,7 +5,7 @@ The app itself is just the thousands flashcard app. You can add/remove/edit deck
 
 ## Local Install
 To run it I've decided on docker.
-Only tested on my own arch system, will test it later on windows.
+Only tested on my own arch(btw) system, will test it later on windows.
 
 #### Linux:
 
