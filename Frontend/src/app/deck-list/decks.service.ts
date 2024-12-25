@@ -8,7 +8,7 @@ import { Deck } from '../models/deck.model';
 })
 export class DecksService {
   private apiUrl = 'http://localhost:5041/api/decks'; // API endpoint
-  
+
   constructor(private http: HttpClient) { }
 
   // Get all decks

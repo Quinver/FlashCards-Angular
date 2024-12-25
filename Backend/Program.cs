@@ -11,13 +11,9 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowSpecificOrigins,
                       policy =>
                       {
-                          policy.WithOrigins("http://localhost:4200")  // Allow your Angular frontend
+                          policy.AllowAnyOrigin()  // Allow your Angular frontend
                                 .AllowAnyMethod()                      // Allow any HTTP methods (GET, POST, etc.)
                                 .AllowAnyHeader();                     // Allow any headers
-
-                          policy.WithOrigins("https://quinver.github.io/")
-                                  .AllowAnyMethod()
-                                  .AllowAnyHeader();
                       });
 });
 
@@ -29,6 +25,12 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    dbContext.Database.Migrate();  // Apply any pending migrations on startup
+}
 
 app.UseCors(MyAllowSpecificOrigins);  // Apply the CORS policy
 
