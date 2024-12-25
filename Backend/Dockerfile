@@ -17,5 +17,9 @@ RUN dotnet publish "FlashcardBackend.csproj" -c Release -o /app/publish
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 EXPOSE 80
+
+# Ensure database directory exists and has proper permissions
+RUN mkdir -p /app/data && chmod -R 777 /app/data
+
 COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "FlashcardBackend.dll"]
