@@ -5,7 +5,7 @@ The app itself is just the thousands flashcard app. You can add/remove/edit deck
 
 ## Local Install
 To run it I've decided on docker.
-Only tested on my own arch(btw) system, will test it later on windows.
+Tested it on my arch(btw) system and on my windows desktop.
 
 #### Linux:
 
@@ -30,10 +30,9 @@ cd FlashCards-Angular
 sudo docker-compose up
 ```
 ### Windows:
-This is out of my head so take it with a grain of salt.
 1. Install docker from the [download](https://docs.docker.com/desktop/setup/install/windows-install/) page.
 2. Restart system if needed.
-3. Run docker-desktop.
+3. Run docker-desktop(For me it took a while before the engine started).
 4. Clone the repository to your local machine:
 ```bash
 git clone https://github.com/Quinver/FlashCards-Angular.git
