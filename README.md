@@ -7,7 +7,7 @@ The app itself is just the thousands flashcard app. You can add/remove/edit deck
 To run it I've decided on docker.
 Tested it on my arch(btw) system and on my windows desktop.
 
-#### Linux:
+#### Linux/wsl:
 
 1. First, make sure Docker and Docker Compose are installed on your system. Use your favorite package manager (tested with pacman on Arch Linux):
 ```bash
