@@ -27,7 +27,7 @@ cd FlashCards-Angular
 ```
 5. Finally, run the Docker containers defined in the docker-compose.yml file(This will take a while):
 ```bash
-sudo docker-compose up
+docker-compose up
 ```
 ### Windows:
 1. Install docker from the [download](https://docs.docker.com/desktop/setup/install/windows-install/) page.
